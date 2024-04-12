@@ -1,7 +1,5 @@
-from loader import bot
+from loader import bot, dp
 import handlers  # noqa
-from utils.set_bot_commands import set_default_commands
 
-if __name__ == "__main__":
-    set_default_commands(bot)
-    bot.infinity_polling()
+if __name__ == '__main__':
+    dp.run_polling(bot)

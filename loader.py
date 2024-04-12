@@ -1,6 +1,6 @@
-from telebot import TeleBot
-from telebot.storage import StateMemoryStorage
-from config_data import config
+from config_data.config import load_config, Bot, Dispatcher
 
-storage = StateMemoryStorage()
-bot = TeleBot(token=config.BOT_TOKEN, state_storage=storage)
+config = load_config(".env")
+
+bot = Bot(token=config.tg_bot.token)
+dp = Dispatcher()

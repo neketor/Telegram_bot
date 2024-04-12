@@ -1,8 +1,8 @@
-from telebot.types import Message
+from loader import bot, dp
+from config_data.config import *
 
-from loader import bot
 
-
-@bot.message_handler(commands=["start"])
-def bot_start(message: Message):
-    bot.reply_to(message, f"Привет, {message.from_user.full_name}!")
+# Этот хэндлер будет срабатывать на команду "/start"
+@dp.message(CommandStart())
+async def process_start_command(message: Message):
+    await message.answer('Привет!\nМеня зовут Charles Swith!\n Чтобы узнать подробную информацию обо мне, напишите команду /help')

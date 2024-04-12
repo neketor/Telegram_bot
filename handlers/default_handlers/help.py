@@ -1,10 +1,24 @@
-from telebot.types import Message
+from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from config_data.config import *
+from loader import bot, dp
 
-from config_data.config import DEFAULT_COMMANDS
-from loader import bot
+big_button_1 = InlineKeyboardButton(
+    text='БОЛЬШАЯ КНОПКА 1',
+    callback_data='big_button_1_pressed'
+)
 
+big_button_2 = InlineKeyboardButton(
+    text='БОЛЬШАЯ КНОПКА 2',
+    callback_data='button_pressed'
+)
 
-@bot.message_handler(commands=["help"])
-def bot_help(message: Message):
-    text = [f"/{command} - {desk}" for command, desk in DEFAULT_COMMANDS]
-    bot.reply_to(message, "\n".join(text))
+# Создаем объект инлайн-клавиатуры
+keyboard = InlineKeyboardMarkup(
+    inline_keyboard=[[big_button_1],
+                     [big_button_2]]
+)
+
+# Этот хэндлер будет срабатывать на команду "/help"
+@dp.message(Command(commands=['help']))
+async def process_help_command(message: Message):
+    await message.answer("Главное меню бота:", reply_markup=keyboard)
