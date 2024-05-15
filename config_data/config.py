@@ -1,11 +1,12 @@
 import os
 from dotenv import load_dotenv, find_dotenv
 from aiogram import Bot, Dispatcher, F
-from aiogram.filters import Command, CommandStart, ChatMemberUpdatedFilter, KICKED, MEMBER
-from aiogram.types import Message
+from aiogram.filters import Command, CommandStart, ChatMemberUpdatedFilter, KICKED, MEMBER, and_f, or_f
+from aiogram.types import Message, CallbackQuery
 from aiogram.types import ChatMemberUpdated
 from dataclasses import dataclass
 from environs import Env
+import logging
 
 if not find_dotenv():
     exit("Переменные окружения не загружены т.к отсутствует файл .env")
