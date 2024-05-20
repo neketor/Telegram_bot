@@ -4,7 +4,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 game_1 = InlineKeyboardButton(
     text='Статистика',
-    callback_data='game_1_stat'
+    callback_data='profile_button'
 )
 
 game_2 = InlineKeyboardButton(

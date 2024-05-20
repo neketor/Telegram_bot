@@ -1,6 +1,4 @@
-from config_data.config import load_config, Bot, Dispatcher
+from config_data.config import Bot, Dispatcher, BOT_TOKEN
 
-config = load_config(".env")
-
-bot = Bot(token=config.tg_bot.token)
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()

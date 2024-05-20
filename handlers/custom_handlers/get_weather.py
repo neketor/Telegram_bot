@@ -7,7 +7,7 @@ from keyboards.inline.in_menu_keyboard import keyboard
 @dp.callback_query(lambda x: x.data=="open_wth_button")
 @dp.message(config.Command(commands='get_weather'))
 async def get_weather_start(message: config.Message, state: FSMContext):
-    await bot.send_message(message.from_user.id, "Напишите название города (Пример: Moscow, Krasnodar - англ.): ")
+    await bot.send_message(message.from_user.id, "Напишите название города на английском (Пример: Moscow, Krasnodar, London): ")
     await state.set_state(open_weather_state.name)
 
 @dp.message(open_weather_state.name)

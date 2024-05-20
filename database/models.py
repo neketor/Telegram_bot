@@ -10,6 +10,7 @@ class BaseModel(Model):
 class User_data(BaseModel):
     user_id = IntegerField()
     user_name = CharField()
+    is_admin = IntegerField()
 
 
 
