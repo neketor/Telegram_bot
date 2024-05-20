@@ -7,10 +7,8 @@ from states.states import FSMContext
 @dp.message(CommandStart())
 async def process_start_command(message: Message, state: FSMContext):
     await state.clear()
-    print(message.from_user.id)
     with db:
         existing_user = User_data.get_or_none(User_data.user_id == message.from_user.id)
-        print(existing_user)
         if existing_user is None:
             new_user = User_data(user_id=message.from_user.id, user_name=message.from_user.full_name, is_admin=0)
             new_user.save()
