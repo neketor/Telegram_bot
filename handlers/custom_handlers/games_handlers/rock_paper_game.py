@@ -29,6 +29,15 @@ def defeat():
 async def guess_the_number_start(message: Message):
     """ В данной функции происходит инициализация пользователя, и ему в базе данных присваиваются значения. """
 
+    # Проверка на наличие пользователя в базе данных. Если нет - добавляем
+    existing_user = Games_data.get_or_none(Games_data.user_id == message.from_user.id)
+    if existing_user is None:
+        new_user = Games_data(user_id=message.from_user.id, user_name=message.from_user.full_name, user_wins=0,
+                              user_attempts=0, user_total_games1=0, user_total_games2=0, secret_number=0,
+                              random_game_2_obj=0)
+        new_user.save()
+        logging.debug(f"{message.from_user.id, message.from_user.full_name} added to games database!")
+
     global user
 
     user = Games_data.get(Games_data.user_id == message.from_user.id)

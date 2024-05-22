@@ -14,6 +14,7 @@ async def process_start_command(message: Message, state: FSMContext):
 
     await state.clear()
     with db:
+        # Проверка на наличие пользователя в базе данных. Если нет - добавляем
         existing_user = User_data.get_or_none(User_data.user_id == message.from_user.id)
         if existing_user is None:
             new_user = User_data(user_id=message.from_user.id, user_name=message.from_user.full_name, is_admin=0)
