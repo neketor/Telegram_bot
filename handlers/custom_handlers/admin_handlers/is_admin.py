@@ -1,12 +1,13 @@
 import logging
-
 from loader import bot, dp
-from config_data.config import *
-from database.models import *
+from config_data.config import Command, Message, F
+from database.models import User_data
 from keyboards.inline.admin.admin_panel import keyboard
 
 @dp.message(Command(commands=["admin_panel"]))
 async def is_admin_func(message: Message):
+    """ После проверки на то, является ли пользователь админом - выдаёт доступ к панели"""
+
     user = User_data.get(User_data.user_id == message.from_user.id)
     if user.is_admin == 1:
         logging.debug(f"{message.from_user.id, message.from_user.full_name} - entered to the admin mode.")
@@ -14,9 +15,11 @@ async def is_admin_func(message: Message):
     else:
         await bot.send_message(message.from_user.id, "У вас недостаточно прав, чтобы пользоваться этой командой.")
 
-# Создание админ-команды для получения списка пользователей
+# По нажатию инлайн-кнопки из админ-панели, запускается хэндлер
 @dp.callback_query(F.data == "users_list")
 async def get_users(message: Message):
+    """ Выводит список пользователей бота. """
+
     users = User_data.select()
     response = "Список пользователей:\n"
     count = 0

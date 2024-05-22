@@ -1,5 +1,6 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
+""" Клавиатура с кнопкой "в меню" """
 
 in_menu_button = InlineKeyboardButton(
     text='В меню',

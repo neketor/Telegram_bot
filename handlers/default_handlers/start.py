@@ -1,11 +1,17 @@
 from loader import bot, dp
-from config_data.config import *
-from database.models import *
+from config_data.config import CommandStart, Message, logging
+from database.models import User_data, db
 from states.states import FSMContext
+
+""" Команда старт """
 
 # Этот хэндлер будет срабатывать на команду "/start"
 @dp.message(CommandStart())
 async def process_start_command(message: Message, state: FSMContext):
+
+    """ Выполняется проверка, на наличие пользователя в базе данных
+        Если его нет - он добавляется """
+
     await state.clear()
     with db:
         existing_user = User_data.get_or_none(User_data.user_id == message.from_user.id)

@@ -1,5 +1,6 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
+""" Во время самой игры, у вас будет выбор между камнем/ножницами или бумагой """
 
 stone_button = InlineKeyboardButton(
     text='Камень',

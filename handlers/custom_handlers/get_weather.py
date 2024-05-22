@@ -4,14 +4,18 @@ from states.states import open_weather_state, FSMContext
 import requests
 from keyboards.inline.in_menu_keyboard import keyboard
 
+
 @dp.callback_query(lambda x: x.data=="open_wth_button")
-@dp.message(config.Command(commands='get_weather'))
 async def get_weather_start(message: config.Message, state: FSMContext):
+    """ По нажатию на кнопку из клавиатуры меню - запускает хэндлер """
+
     await bot.send_message(message.from_user.id, "Напишите название города на английском (Пример: Moscow, Krasnodar, London): ")
     await state.set_state(open_weather_state.name)
 
 @dp.message(open_weather_state.name)
 async def get_weather_town_info(message: config.Message, state: FSMContext):
+    """ Здесь уже происходит get запрос, и результат выводится пользователю. """
+
     await state.update_data(number=message.text)
     name = await state.get_data()
     print(name)

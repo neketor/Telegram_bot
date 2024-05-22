@@ -1,4 +1,6 @@
-from peewee import *
+from peewee import SqliteDatabase, Model, IntegerField, CharField
+
+""" Создание моделей (таблиц) для базы данных"""
 
 db = SqliteDatabase(".database.db")
 

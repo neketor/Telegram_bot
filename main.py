@@ -1,11 +1,13 @@
 from loader import bot, dp
 import handlers  # noqa
 from config_data.config import Message, F, logging
-from datetime import datetime
 
-
+""" Файл main - запуск бота """
 
 if __name__ == '__main__':
+
+    # логируем любые сообщения пользователей
+
     logging.basicConfig(
         level=logging.DEBUG,
         format = '[%(asctime)s] #%(levelname)-8s %(filename)s:'

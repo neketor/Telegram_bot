@@ -1,5 +1,6 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
+""" Админ-панель """
 
 in_menu_button = InlineKeyboardButton(
     text='Список всех пользователей',
